@@ -57,10 +57,6 @@ def calcular_rescisao(dados):
         return {"erro": f"Erro inesperado: {str(e)}"}
 
 def calcular_rescisao_logica(dados, data_admissao, data_saida, adicionais):
-    """
-    Lógica de cálculo da rescisão, separada para manter o código organizado.
-    """
-
     salario = float(dados["salario"])
     dias_trabalhados = (data_saida - data_saida.replace(day=1)).days + 1
     saldo_salario = (salario / 30) * dias_trabalhados
@@ -78,12 +74,16 @@ def calcular_rescisao_logica(dados, data_admissao, data_saida, adicionais):
     total_rescisao = saldo_salario + aviso_previo + ferias_vencidas + terco_constitucional + decimo_terceiro + multa_fgts + adicionais
 
     return {
-        "saldo_salario": round(saldo_salario, 2),
-        "aviso_previo": round(aviso_previo, 2),
-        "ferias_vencidas": round(ferias_vencidas, 2),
-        "terco_constitucional": round(terco_constitucional, 2),
-        "decimo_terceiro": round(decimo_terceiro, 2),
-        "multa_fgts": round(multa_fgts, 2),
-        "adicionais": round(adicionais, 2),
-        "total_rescisao": round(total_rescisao, 2)
+        "status": "sucesso",
+        "mensagem": "Cálculo realizado com sucesso.",
+        "dados": {
+            "saldo_salario": round(saldo_salario, 2),
+            "aviso_previo": round(aviso_previo, 2),
+            "ferias_vencidas": round(ferias_vencidas, 2),
+            "terco_constitucional": round(terco_constitucional, 2),
+            "decimo_terceiro": round(decimo_terceiro, 2),
+            "multa_fgts": round(multa_fgts, 2),
+            "adicionais": round(adicionais, 2),
+            "total_rescisao": round(total_rescisao, 2)
+        }
     }
