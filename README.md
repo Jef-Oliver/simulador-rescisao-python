@@ -68,6 +68,8 @@ Podemos criar uma API Flask onde o funcionário possa enviar suas informações 
 
 - Retornar um JSON com o detalhamento dos valores.
 
+## 📌 Versionamento do Código
+
 ## 📌 Regras de Negócio e Estrutura dos Dados
 
 Abaixo, organizamos as regras para garantir que o sistema processe a rescisão corretamente.
