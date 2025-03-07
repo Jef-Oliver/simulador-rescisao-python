@@ -1,2 +1,1 @@
-# simulador-rescisao
-Simulador de Rescisão
+## Simulador de Rescisão em Python e Flask
