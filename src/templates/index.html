@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Rescisão</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <h1>Simulador de Rescisão</h1>
+
+    <form id="formRescisao">
+        <label for="salario">Salário</label>
+        <input type="number" name="salario" id="salario" placeholder="Salário" required>
+
+        <label for="data_admissao">Data de Admissão</label>
+        <input type="date" name="data_admissao" id="data_admissao" required>
+
+        <label for="data_saida">Data de Saída</label>
+        <input type="date" name="data_saida" id="data_saida" required>
+
+        <label for="motivo_saida">Motivo da Saída</label>
+        <select name="motivo_saida" id="motivo_saida" required>
+            <option value="">Selecione o Motivo da Saída</option>
+            <option value="pedido_demissao">Pedido de Demissão</option>
+            <option value="demissao_sem_justa_causa">Demissão sem Justa Causa</option>
+            <option value="demissao_com_justa_causa">Demissão com Justa Causa</option>
+        </select>
+
+        <label for="saldo_ferias">Saldo de Férias (dias)</label>
+        <input type="number" name="saldo_ferias" id="saldo_ferias" placeholder="Saldo de Férias" required>
+
+        <label for="decimo_terceiro">Valor do 13º Salário</label>
+        <input type="number" name="decimo_terceiro" id="decimo_terceiro" placeholder="Valor do 13º Salário" required>
+
+        <label for="aviso_previo">Aviso Prévio</label>
+        <select name="aviso_previo" id="aviso_previo" required>
+            <option value="trabalhado">Trabalhado</option>
+            <option value="indenizado">Indenizado</option>
+        </select>
+
+        <label for="horas_pendentes">Horas Extras Pendentes</label>
+        <select name="horas_pendentes" id="horas_pendentes" required>
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+        </select>
+
+        <label for="adicionais">Adicionais (Opcional)</label>
+        <input type="number" name="adicionais" id="adicionais" placeholder="Adicionais">
+
+        <button type="submit">Calcular Rescisão</button>
+    </form>
+
+    <div class="resultado" id="resultado"></div>
+
+    <script>
+        document.getElementById("formRescisao").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            
+            let formData = new FormData(this);
+            let jsonData = {};
+            formData.forEach((value, key) => jsonData[key] = value);
+
+            jsonData["horas_pendentes"] = jsonData["horas_pendentes"] === "true"; // Converter string para booleano
+            jsonData["salario"] = parseFloat(jsonData["salario"]); // Garantir que salário seja float
+            jsonData["saldo_ferias"] = parseInt(jsonData["saldo_ferias"]); // Garantir que saldo_ferias seja inteiro
+            jsonData["decimo_terceiro"] = parseFloat(jsonData["decimo_terceiro"]);
+            jsonData["adicionais"] = jsonData["adicionais"] ? parseFloat(jsonData["adicionais"]) : 0.0;
+
+            let response = await fetch("/calcular-rescisao", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(jsonData)
+            });
+
+            let result = await response.json();
+            document.getElementById("resultado").innerHTML = `<strong>Resultado:</strong> <pre>${JSON.stringify(result, null, 2)}</pre>`;
+        });
+    </script>
+
+</body>
+</html>
