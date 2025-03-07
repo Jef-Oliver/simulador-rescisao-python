@@ -1,5 +1,12 @@
 # Simulador de Rescisão em Python e Flask
 
+## 📸 Capturas de Tela
+
+<div align="center">
+    <img src="cap1.png" alt="Interface Web" width="500">
+    <img src="cap2.png" alt="Cálculo Rescisão" width="500">
+</div>
+
 ## 📝  Descrição do Desafio
 
 Crie um sistema que permita a um funcionário calcular sua rescisão ao sair da empresa. O sistema deve receber as informações necessárias e calcular corretamente os valores devidos conforme os direitos trabalhistas.
