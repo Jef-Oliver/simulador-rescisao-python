@@ -69,7 +69,7 @@ Se não recebeu, considerar (Salário / 12) * meses trabalhados no ano.
 
 ## 🚀 Implementação com Flask (Opcional)
 
-Podemos criar uma API Flask onde o funcionário possa enviar suas informações e receber o cálculo da rescisão. A API poderia ter:
+Você também pode criar uma API Flask onde o funcionário possa enviar suas informações e receber o cálculo da rescisão. A API poderia ter:
 
 - Uma rota POST para receber os dados do funcionário e processar os cálculos.
 
