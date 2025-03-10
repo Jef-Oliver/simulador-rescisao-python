@@ -1,5 +1,7 @@
 # Simulador de Rescisão em Python e Flask
 
+## ° Como contribuir com o projeto: acesse o arquivo <CONTRIBUTING.md>
+
 ## 📸 Capturas de Tela
 
 <div align="center">
